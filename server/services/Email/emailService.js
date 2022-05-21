@@ -1,7 +1,9 @@
-
-
 class EmailService {
+
   constructor() {
-    this.email = {}
+    this.email = "teste";
   }
+
 }
+
+module.exports = EmailService;
