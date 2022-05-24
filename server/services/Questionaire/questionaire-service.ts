@@ -1,6 +1,6 @@
 import { IRepository } from "../common/contracts/irepository";
 
-export class RegistryService{
+export class QuestionaireService{
 
     public _db: IRepository;
 
