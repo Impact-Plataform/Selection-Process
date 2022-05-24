@@ -1,13 +1,18 @@
-import { IRepository } from "../common/contracts/irepository";
+import { EmailStorage } from "./storage";
 
 export class EmailService{
 
-    public _emailStorage = new EmailService();
+    public readonly _emailStorage;
 
-    async SendEmailTest(){
+    constructor(){
+        this._emailStorage = new EmailStorage();
     }
 
-    async SendEmailMeeting(){
+    public async SendEmailTest(){
+        return true;
+    }
+
+    public async SendEmailMeeting(){
     }
     
 }

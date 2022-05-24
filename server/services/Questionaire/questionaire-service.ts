@@ -1,12 +1,16 @@
-import { QuestionaireStorage } from "./storage";
+import { QuestionaireStorage } from "./questionaire-storage";
 
 export class QuestionaireService{
 
-    public _questionaireStorage = new QuestionaireStorage();
+    public readonly _questionaireStorage;
 
-    async GetTest(){
+    constructor(){
+        this._questionaireStorage = new QuestionaireStorage();
     }
 
-    async SendTest(){
+    public async GetTest(){
+    }
+
+    public async SendTest(){
     }
 }
