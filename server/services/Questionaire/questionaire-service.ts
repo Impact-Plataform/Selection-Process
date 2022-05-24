@@ -1,15 +1,8 @@
-import { IRepository } from "../common/contracts/irepository";
+import { QuestionaireStorage } from "./storage";
 
 export class QuestionaireService{
 
-    public _db: IRepository;
-
-    constructor(db: IRepository){
-        this._db = db;
-    }
-
-    async CreateCandidate(){
-    }
+    public _questionaireStorage = new QuestionaireStorage();
 
     async GetTest(){
     }

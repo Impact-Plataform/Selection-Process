@@ -1,19 +1,11 @@
-import { IRepository } from "../common/contracts/irepository";
+import { RegistryStorage } from "./repository";
 
 export class RegistryService{
 
-    public _db: IRepository;
-
-    constructor(db: IRepository){
-        this._db = db;
-    }
+    public _registryStorage = new RegistryStorage();
 
     async CreateCandidate(){
+        
     }
 
-    async GetTest(){
-    }
-
-    async SendTest(){
-    }
 }

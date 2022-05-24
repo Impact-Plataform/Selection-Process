@@ -1,13 +1,14 @@
 import { IRepository } from "../common/contracts/irepository";
+import { EmailService } from "../Email/emailService";
+import { QuestionaireService } from "../Questionaire/questionaire-service";
 import Candidate from "../Registry/candidate";
+import { RegistryService } from "../Registry/registry-service";
 
 export class ManagerService{
 
-    public _db: IRepository;
-
-    constructor(db: IRepository){
-        this._db = db;
-    }
+    public _emailService = new EmailService();
+    public _questionareService = new QuestionaireService();
+    public _registryService = new RegistryService();
 
     async CreateCandidate(req: any, res: any){
 
@@ -22,10 +23,6 @@ export class ManagerService{
             speak_english: req.body.speak_english,
         }
 
-        this._db.CreateCandidate(candidate);
-        res.json({
-            Message: true
-        })
     }
 
     async GetTest(req: any, res: any){
