@@ -1,5 +1,6 @@
-const winston = require('winston');
- 
+import winston from 'winston';
+
+
 const log = winston.createLogger({
     format: winston.format.combine(
         winston.format.timestamp({
@@ -10,7 +11,7 @@ const log = winston.createLogger({
         }),
         //winston.format.json(),
         winston.format.printf(
-            (info: {timestamp: any; level: any; message: any; }) => `${info.timestamp} - [${info.level}]: ${info.message}`
+            (info) => `${info.timestamp} - [${info.level}]: ${info.message}`
            )
     ),
     transports: [
@@ -31,4 +32,4 @@ function formatDate(date: any) {
 	return date.toLocaleDateString().replaceAll("/", "-");
 }
  
-module.exports = log;
+export default log;

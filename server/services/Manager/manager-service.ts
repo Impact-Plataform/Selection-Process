@@ -1,6 +1,7 @@
 import { EmailService } from "../Email/emailService";
 import { QuestionaireService } from "../Questionaire/questionaire-service";
 import Candidate from "../Registry/candidate";
+import { Request, Response } from "express";
 import { RegistryService } from "../Registry/registry-service";
 var crypto = require("crypto");
 
@@ -16,7 +17,7 @@ export class ManagerService{
         this._registryService = new RegistryService();
     }
 
-    async Register(req: any, res: any){
+    async Register(req: Request, res: Response){
 
         var candidate: Candidate = {
             id: crypto.randomBytes(16).toString("hex"),

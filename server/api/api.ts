@@ -6,7 +6,7 @@ const router = express.Router();
 
 var managerService = new ManagerService();
 
-router.post('/register', async(req, res) => managerService.Register(req, res));
+router.post('/register', managerService.Register);
 //router.get('/test', _ManagerService.GetTest);
 //router.post('/test', _ManagerService.SendTest);
 

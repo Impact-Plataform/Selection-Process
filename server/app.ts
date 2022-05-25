@@ -1,26 +1,26 @@
-//const swaggerUi = require('swagger-ui-express');
-//const swaggerDocument = require('./swagger.json');
-
 import express from 'express'
 import cors from 'cors'
 import api from "./api/api"
 
-const log = require('./logger/logger');
+class App {
+  public express: express.Application
+  constructor() {
+    this.express = express();
+    this.middleware();
+    this.routes();
+  }
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+  private middleware(): void {
+    this.express.use(cors());
+    this.express.use(express.json());
+  }
 
-app.use(cors());
-app.use(express.json());
+  private routes(): void {
+    this.express.use('/api', api);
+  }
+}
 
-//app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use('/api', api);
 
-app.listen(PORT, () => {
-  log.info(`server is running on port ${PORT}`);
-  console.log(`server is running on port ${PORT}`);
-});
-
-module.exports = app;
+export default new App().express;
 
  
