@@ -1,19 +1,27 @@
-import { IRepository } from "../common/contracts/irepository";
+import Candidate from "./candidate";
+import { RegistryStorageFake } from "./registry-storageFake";
 
 export class RegistryService{
+    
+    public readonly _registryStorage;
 
-    public _db: IRepository;
-
-    constructor(db: IRepository){
-        this._db = db;
+    constructor(){
+        this._registryStorage = new RegistryStorageFake();
     }
 
-    async CreateCandidate(){
-    }
+    public async CreateCandidate(candidate: Candidate){
 
-    async GetTest(){
-    }
+        if(candidate.name == null || candidate.birthdate == null || candidate.email == null ||
+            candidate.phone == null){
+                return null;
+        }
 
-    async SendTest(){
+        if(await this._registryStorage.CreateCandidate(candidate)){
+            return true;
+        }
+        
+        return false;
     }
 }
+
+

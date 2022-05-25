@@ -1,12 +1,12 @@
 import { IRepository } from "../common/contracts/irepository";
 
-export class EmailStorage{
+export class QuestionaireStorage{
 
-    async GetEmailTest(){
+    async GetQuestionaire(){
 
     }
 
-    async GetEmailMeeting(){
+    async SendQuestionaire(){
         
     }
     
