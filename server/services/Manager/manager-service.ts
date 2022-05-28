@@ -40,7 +40,7 @@ export class ManagerService{
         }
 
         if(register){
-            await this._emailService.SendEmailTest();
+            this._emailService.SendEmailTest(candidate.id);
             return res.status(201).json({
                 message: "Registrado com sucesso!"
             })
@@ -51,11 +51,11 @@ export class ManagerService{
         })
     }
 
-    async GetTest(req: any, res: any){
-        
+    async GetTest(req: Request, res: Response){
+        var test = await this._questionareService.GetTest();
+        res.status(200).json(test);
     }
 
-    async SendTest(req: any, res: any){
-        
+    async SendTest(req: any, res: any){        
     }
 }

@@ -5,7 +5,6 @@ export class RegistryStorageFake{
     public static _dbCandidate: Array<Candidate> = [];
 
     public async CreateCandidate(candidate: Candidate){
-        console.log(candidate);
         try{
             RegistryStorageFake._dbCandidate.push(candidate);
             return true;
