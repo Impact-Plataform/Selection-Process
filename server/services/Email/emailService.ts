@@ -11,7 +11,6 @@ export class EmailService{
     constructor(){
         this._emailStorage = new EmailStorage();
     }
-
     public async SendEmailTest(id: string){
         
         const transporter = nodemailer.createTransport({

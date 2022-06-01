@@ -24,6 +24,11 @@ const log = winston.createLogger({
             //filename: `./server/logger/logs/info_${formatDate(new Date(Date.now()))}.log`, 
             filename: `./server/logger/logs/info.log`, 
             level: 'info' 
+        }),
+        new winston.transports.File({ 
+            //filename: `./server/logger/logs/debug_${formatDate(new Date(Date.now()))}.log`, 
+            filename: `./server/logger/logs/debug.log`, 
+            level: 'debug' 
         })
     ],
 });

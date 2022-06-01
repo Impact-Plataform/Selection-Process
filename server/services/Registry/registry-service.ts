@@ -1,4 +1,5 @@
 import Candidate from "./candidate";
+import { RegistryStorage } from "./registry-storage";
 import { RegistryStorageFake } from "./registry-storageFake";
 
 export class RegistryService{
@@ -6,21 +7,11 @@ export class RegistryService{
     public readonly _registryStorage;
 
     constructor(){
-        this._registryStorage = new RegistryStorageFake();
+        this._registryStorage = new RegistryStorage();
     }
 
-    public async CreateCandidate(candidate: Candidate){
-
-        if(candidate.name == null || candidate.birthdate == null || candidate.email == null ||
-            candidate.phone == null){
-                return null;
-        }
-
-        if(await this._registryStorage.CreateCandidate(candidate)){
-            return true;
-        }
-        
-        return false;
+    public async CreateCandidate(candidate: Candidate){       
+        return await this._registryStorage.CreateCandidate(candidate);
     }
 }
 

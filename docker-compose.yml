@@ -1,0 +1,49 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: .
+      target: development
+    command: "npm run dev"
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    volumes:
+      - .:/usr/src/app
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - appnet
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+      PG_DATA: /var/lib/postgresql/data
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./database/Tables/CREATE_DBs.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - appnet
+      
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+    networks:
+      - appnet
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
+networks:
+  appnet:
