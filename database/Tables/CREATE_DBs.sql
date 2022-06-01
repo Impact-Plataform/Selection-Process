@@ -2,9 +2,9 @@
 CREATE TABLE CANDIDATES
 (
     --base
-    id PRIMARY KEY,
+    id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
     name VARCHAR(1024) NOT NULL,    
-    birthdate DATE NOT NULL,
+    birthdate DATE DEFAULT NULL ,
     email VARCHAR(256) NOT NULL,
     
     --add info
@@ -24,7 +24,7 @@ CREATE TABLE CANDIDATES
 
 CREATE TABLE RESULTS
 (
-    id INT PRIMARY KEY,
+    id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
     note INT NOT NULL,
     FOREIGN KEY(id) REFERENCES CANDIDATES(id)
 );

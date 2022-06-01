@@ -1,7 +1,7 @@
 type Candidate = {
     id?: string
     name: string
-    birthdate: string
+    birthdate: any
     email: string
     phone: string
     interest?: string

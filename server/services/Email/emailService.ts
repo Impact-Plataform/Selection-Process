@@ -8,7 +8,7 @@ export class EmailService{
         this._emailStorage = new EmailStorage();
     }
 
-    public async SendEmailTest(){
+    public async SendEmailTest(registerId: number){
         return true;
     }
 
