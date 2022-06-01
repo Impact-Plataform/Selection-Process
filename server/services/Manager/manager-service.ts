@@ -20,17 +20,17 @@ export class ManagerService {
 
     public Register = async (req: Request, res: Response, next: NextFunction) => {
 
-        var candidate: Candidate = {
-            id: crypto.randomBytes(16).toString("hex"),
-            name: req.body.name,
-            birthdate: req.body.birthdate,
-            email: req.body.email,
-            phone: req.body.phone,
-            interest: req.body.interest,
-            knowledge: req.body.knowledge,
-            how_knew_plataforma: req.body.how_knew_plataforma,
-            speak_english: req.body.speak_english,
-        }
+//         var candidate: Candidate = {
+//             id: crypto.randomBytes(16).toString("hex"),
+//             name: req.body.name,
+//             birthdate: req.body.birthdate,
+//             email: req.body.email,
+//             phone: req.body.phone,
+//             interest: req.body.interest,
+//             knowledge: req.body.knowledge,
+//             how_knew_plataforma: req.body.how_knew_plataforma,
+//             speak_english: req.body.speak_english,
+//         }
         try {
             const registerId = await this._registryService.CreateCandidate(candidate);
             await this._emailService.SendEmailTest(registerId);
@@ -42,11 +42,12 @@ export class ManagerService {
         }
     }
 
-    async GetTest(req: any, res: any) {
-
+    async GetTest(req: Request, res: Response){
+        var test = await this._questionareService.GetTest();
+        res.status(200).json(test);
     }
 
-    async SendTest(req: any, res: any) {
+    async SendTest(req: any, res: any){        
 
     }
 }

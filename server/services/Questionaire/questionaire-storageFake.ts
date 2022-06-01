@@ -82,13 +82,13 @@ export class QuestionaireStorageFake{
             });
     }
 
-    async GetTest(){
+    async GetQuestionaire(){
         let question = new Array<Questions>();
 
         for(var x = 0; x < 10; x++){
-            var random = Math.floor(Math.random() * 13)
+            var random = Math.floor(Math.random() * 12)
             while(question.includes(QuestionaireStorageFake._dbQuestions[random])){
-                random = Math.floor(Math.random() * 13)
+                random = Math.floor(Math.random() * 12)
             }
             question.push(QuestionaireStorageFake._dbQuestions[random]);
         }
@@ -96,7 +96,7 @@ export class QuestionaireStorageFake{
         return question;
     } 
 
-    async SendTest(result: Result){
+    async SendQuestionaire(result: Result){
         QuestionaireStorageFake._dbResults.forEach(element => {
             if(result.id == element.id){
                 return false;
