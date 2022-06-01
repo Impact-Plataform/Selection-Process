@@ -2,12 +2,12 @@ import app from './app';
 import log from './logger/logger';
 require('dotenv').config()
 
-const PORT = process.env.PORT || 3000;
+const SERVER_PORT = process.env.SERVER_PORT || 3000;
 
 
-app.listen(PORT, () => {
-  log.info(`server is running on port ${PORT}`);
-  console.log(`server is running on port ${PORT}`);
+app.listen(SERVER_PORT, () => {
+  log.info(`server is running on port ${SERVER_PORT}`);
+  console.log(`server is running on port ${SERVER_PORT}`);
 });
 
 module.exports = app;

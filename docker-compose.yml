@@ -7,7 +7,7 @@ services:
       target: development
     command: "npm run dev"
     ports:
-      - ${PORT}:${PORT}
+      - ${SERVER_PORT}:${SERVER_PORT}
     volumes:
       - .:/usr/src/app
     env_file:
@@ -30,7 +30,7 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./database/tables/CREATE_DBs.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./database/Tables/CREATE_DBs.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - appnet
       
