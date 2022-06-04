@@ -5,7 +5,9 @@ import { requestTimer } from './api/middlewares/requestTimer';
 import { errorHandler } from './api/middlewares/errorHandler';
 
 class App {
+
   public express: express.Application
+
   constructor() {
     this.express = express();
     this.middleware();
@@ -18,6 +20,7 @@ class App {
     this.express.use(cors());
     this.express.use(express.json());
   }
+  
   private errorHandlers(): void {
     this.express.use(errorHandler)
   }
@@ -26,7 +29,6 @@ class App {
     this.express.use('/api', api);
   }
 }
-
 
 export default new App().express;
 

@@ -2,7 +2,6 @@ import { IdbConfig } from "../contracts/IdbConfig"
 
 require('dotenv').config()
 
-
 export const dbConfig: IdbConfig = {
   database: process.env.DB_NAME,
   user: process.env.DB_USER,

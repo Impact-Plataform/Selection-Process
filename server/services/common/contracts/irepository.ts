@@ -1,5 +1,5 @@
 import Questions from "../../Questionaire/question";
-import Candidate from "../../Registry/candidate";
+import { Candidate } from "../../Registry/candidate";
 import Result from "../../Registry/result";
 
 export interface IRepository {

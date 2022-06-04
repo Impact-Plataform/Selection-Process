@@ -4,9 +4,11 @@ import { Client } from 'ts-postgres';
 import log from "../../../logger/logger";
 
 export class Database {
+
     private _dbConfig: IdbConfig;
     private static _instance: Database;
     private con!: Client;
+
     private constructor(dbConfig: IdbConfig) {
         this._dbConfig = dbConfig;
     }
@@ -19,6 +21,7 @@ export class Database {
         }
         return Database._instance;
     }
+    
     private async connect() {
         this.con = new Client(dbConfig);
         await this.con.connect();
@@ -29,9 +32,11 @@ export class Database {
 
         const result = await this.con.query(query, params);
         const ret = [];
+
         for await (const row of result) {
             ret.push(row);
         }
+
         await this.con.end();
         return ret;            
     }

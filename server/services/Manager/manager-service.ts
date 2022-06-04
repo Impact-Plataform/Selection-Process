@@ -1,15 +1,15 @@
 import { EmailService } from "../Email/emailService";
 import { QuestionaireService } from "../Questionaire/questionaire-service";
-import { Candidate } from "../Registry/candidate";
 import { NextFunction, Request, Response } from "express";
 import { RegistryService } from "../Registry/registry-service";
 import log from "../../logger/logger";
+import { Requests } from "../common/_requests";
 
 export class ManagerService {
 
-    public readonly _emailService;
-    public readonly _questionareService;
-    public readonly _registryService;
+    private readonly _emailService;
+    private readonly _questionareService;
+    private readonly _registryService;
 
     constructor() {
         this._emailService = new EmailService();
@@ -18,18 +18,25 @@ export class ManagerService {
     }
 
     public Register = async (req: Request, res: Response, next: NextFunction) => {
-        //Validar candidate
-        const candidate = new Candidate(req.body);
-        
-        try {
-            const registerId = await this._registryService.CreateCandidate(candidate);
-            // await this._emailService.SendEmailTest(registerId);
-            return res.status(201).json({
-                message: "Registrado com sucesso!",
-                registerId: registerId
-            })
-        } catch (error) {
-            next(error);
+
+        var candidate = Requests.Candidate(req.body.name, req.body.birthdate, 
+            req.body.email, req.body.phone, req.body.how_knew_plataforma );
+
+        if(candidate == null){
+            //bad request
+        }else{
+            try {
+                var registerId = await this._registryService.CreateCandidate(candidate);
+                //await this._emailService.SendEmailTest(registerId);
+
+                return res.status(201).json({
+                    message: "Registrado com sucesso!",
+                    //registerId: registerId
+                })
+                
+            } catch (error) {
+                next(error);
+            }
         }
     }
 
