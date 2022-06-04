@@ -6,21 +6,26 @@ import log from "../../../logger/logger";
 export class Database {
     private _dbConfig: IdbConfig;
     private static _instance: Database;
-    private con: Client;
+    private con!: Client;
     private constructor(dbConfig: IdbConfig) {
         this._dbConfig = dbConfig;
-        this.con = new Client(dbConfig);
     }
 
     public static getInstance(): Database {
+        console.log(process.env.DB_PASS);
+        
         if (!Database._instance) {
             Database._instance = new Database(dbConfig);
         }
         return Database._instance;
     }
+    private async connect() {
+        this.con = new Client(dbConfig);
+        await this.con.connect();
+    }
 
     public async run(query: string, params: any[] = []): Promise<any> {
-        await this.con.connect();
+        await this.connect();
 
         const result = await this.con.query(query, params);
         const ret = [];
