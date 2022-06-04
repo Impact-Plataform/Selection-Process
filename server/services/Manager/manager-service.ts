@@ -1,10 +1,9 @@
 import { EmailService } from "../Email/emailService";
 import { QuestionaireService } from "../Questionaire/questionaire-service";
-import Candidate from "../Registry/candidate";
+import { Candidate } from "../Registry/candidate";
 import { NextFunction, Request, Response } from "express";
 import { RegistryService } from "../Registry/registry-service";
 import log from "../../logger/logger";
-var crypto = require("crypto");
 
 export class ManagerService {
 
@@ -19,23 +18,15 @@ export class ManagerService {
     }
 
     public Register = async (req: Request, res: Response, next: NextFunction) => {
-
-//         var candidate: Candidate = {
-//             id: crypto.randomBytes(16).toString("hex"),
-//             name: req.body.name,
-//             birthdate: req.body.birthdate,
-//             email: req.body.email,
-//             phone: req.body.phone,
-//             interest: req.body.interest,
-//             knowledge: req.body.knowledge,
-//             how_knew_plataforma: req.body.how_knew_plataforma,
-//             speak_english: req.body.speak_english,
-//         }
+        //Validar candidate
+        const candidate = new Candidate(req.body);
+        
         try {
             const registerId = await this._registryService.CreateCandidate(candidate);
-            await this._emailService.SendEmailTest(registerId);
+            // await this._emailService.SendEmailTest(registerId);
             return res.status(201).json({
-                message: "Registrado com sucesso!"
+                message: "Registrado com sucesso!",
+                registerId: registerId
             })
         } catch (error) {
             next(error);
