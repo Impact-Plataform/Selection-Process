@@ -2,3 +2,4 @@
 
 /.idea
 /.env
+/server/logger/logs
