@@ -8,12 +8,8 @@ CREATE TABLE CANDIDATES
     email VARCHAR(256) NOT NULL,
     
     --add info
-    phone VARCHAR(15) NOT NULL,    
-    interest VARCHAR(256) DEFAULT NULL,
-    knowledge TEXT DEFAULT NULL,
+    phone VARCHAR(15) NOT NULL,  
     how_knew_plataforma  VARCHAR(32) DEFAULT NULL,
-    address_city VARCHAR(32) DEFAULT NULL,
-    speak_english VARCHAR(32) DEFAULT NULL,
     -- (...)
 
     --control
