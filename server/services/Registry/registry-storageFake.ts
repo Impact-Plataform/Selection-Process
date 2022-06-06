@@ -18,7 +18,7 @@ export class RegistryStorageFake{
     private GetUuidFake():string {
         var idFake = '';
         var caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        for (var i = 0; i < 20; i++) {
+        for (var i = 0; i < 40; i++) {
             idFake += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
         }
         return idFake;

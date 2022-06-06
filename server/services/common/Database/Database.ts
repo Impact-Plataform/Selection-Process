@@ -14,7 +14,6 @@ export class Database {
     }
 
     public static getInstance(): Database {
-        console.log(process.env.DB_PASS);
         
         if (!Database._instance) {
             Database._instance = new Database(dbConfig);

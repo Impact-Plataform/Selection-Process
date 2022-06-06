@@ -1,11 +1,11 @@
 import { Candidate } from "../Registry/candidate";
 
-export class Requests{
+export class Validator{
 
     static Candidate(name: string, birthdate: string, email: string, 
         phone: string, how_knew_plataforma?: string){
 
-            if(Requests.HasPropertiesCandidate(name, birthdate, email, phone)){
+            if(Validator.HasPropertiesCandidate(name, birthdate, email, phone)){
 
                 if(how_knew_plataforma == null){
                     how_knew_plataforma = ''
@@ -16,7 +16,7 @@ export class Requests{
 
             }
 
-            return null;
+            throw new Error;
     }
 
     private static HasPropertiesCandidate(name: string, birthdate: string, email: string, 

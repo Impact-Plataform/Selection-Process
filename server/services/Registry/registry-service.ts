@@ -9,13 +9,8 @@ export class RegistryService{
         this._registryStorage = new RegistryStorageFake();
     }
 
-    public async CreateCandidate(candidate: Candidate){  
-        this.verififyCandidate(candidate); 
+    public async CreateCandidate(candidate: Candidate){   
         return await this._registryStorage.CreateCandidate(candidate);
-    }
-
-    private verififyCandidate(candidate: Candidate){
-        console.log(typeof(candidate))
     }
 
 }
