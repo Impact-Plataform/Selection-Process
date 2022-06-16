@@ -37,7 +37,6 @@ CREATE TABLE RESPONSES
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP     
 );
 
-
 CREATE TABLE QUESTIONS
 (
     --base
@@ -57,4 +56,10 @@ CREATE TABLE EMAIL_TEMPLATES
     header_to VARCHAR(256) NOT NULL,
     header_subject VARCHAR(256) NOT NULL,    
     body TEXT NOT NULL
+);
+
+CREATE TABLE CANDIDATE_STATUS
+(
+    candidate_id NOT NULL,
+    test_sent boolean DEFAULT FALSE
 );
