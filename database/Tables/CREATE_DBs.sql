@@ -10,6 +10,7 @@ CREATE TABLE CANDIDATES
     --add info
     phone VARCHAR(15) NOT NULL,  
     how_knew_plataforma  VARCHAR(32) DEFAULT NULL,
+    speak_english char(3) DEFAULT NULL,
     -- (...)
 
     --control
@@ -20,19 +21,40 @@ CREATE TABLE CANDIDATES
 
 CREATE TABLE RESULTS
 (
-    id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+    candidate_id uuid PRIMARY KEY,
     note INT NOT NULL,
     FOREIGN KEY(id) REFERENCES CANDIDATES(id)
 );
+
+CREATE TABLE RESPONSES
+(
+    --base
+    candidate_id uuid NOT NULL REFERENCES candidates(id),
+    question_id INT NOT NULL REFERENCES questions(id),
+    response TEXT NOT NULL,
+    --control
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP     
+);
+
 
 CREATE TABLE QUESTIONS
 (
     --base
     id SERIAL PRIMARY KEY,
     question TEXT,
+    options TEXT,
     answer TEXT,
     --control
-    enable BOOLEAN DEFAULT TRUE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP     
+);
+
+CREATE TABLE EMAIL_TEMPLATES
+(
+    --base
+    id SERIAL PRIMARY KEY,
+    header_to VARCHAR(256) NOT NULL,
+    header_subject VARCHAR(256) NOT NULL,    
+    body TEXT NOT NULL
 );
