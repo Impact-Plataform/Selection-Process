@@ -1,15 +1,15 @@
-import { QuestionaireStorageFake } from "./questionaire-storageFake";
+import { QuestionaireStorage } from "./questionaire-storage";
 
 export class QuestionaireService{
 
     public readonly _questionaireStorage;
 
     constructor(){
-        this._questionaireStorage = new QuestionaireStorageFake();
+        this._questionaireStorage = new QuestionaireStorage();
     }
 
     public async GetTest(){
-        return this._questionaireStorage.GetQuestionaire();
+        return await this._questionaireStorage.GetQuestionaire();
     }
 
     public async SendTest(){

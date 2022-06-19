@@ -1,7 +1,6 @@
 import { IdbConfig } from "../contracts/IdbConfig";
 import { dbConfig } from "./PostgresConfig";
 import { Client } from 'ts-postgres';
-import log from "../../../logger/logger";
 
 export class Database {
 

@@ -2,7 +2,6 @@ import { EmailService } from "../Email/emailService";
 import { QuestionaireService } from "../Questionaire/questionaire-service";
 import { NextFunction, Request, Response } from "express";
 import { RegistryService } from "../Registry/registry-service";
-import log from "../../logger/logger";
 import { Validator } from "../common/_requests";
 
 export class ManagerService {
@@ -21,10 +20,10 @@ export class ManagerService {
 
         try {
             var candidate = Validator.Candidate(req.body.name, req.body.birthdate, 
-                req.body.email, req.body.phone, req.body.how_knew_plataforma);
+                req.body.email, req.body.phone, req.body.how_knew_plataforma, req.body.speak_english);
 
             var registerId = await this._registryService.CreateCandidate(candidate);
-            await this._emailService.SendEmailTest(registerId);
+            //await this._emailService.SendEmailTest(registerId);
 
             return res.status(201).json({
                 message: "Registrado com sucesso!",
@@ -37,12 +36,26 @@ export class ManagerService {
 
     }
 
-    async GetTest(req: Request, res: Response){
-        var test = await this._questionareService.GetTest();
-        res.status(200).json(test);
+    public GetTest = async(req: Request, res: Response, next: NextFunction) =>{
+
+        try{
+
+            var test = await this._questionareService.GetTest();
+            return res.status(200).json({
+                test,
+                success: true
+            });
+            
+        }catch (error) {
+
+            next(error);
+
+        }
+
     }
 
     async SendTest(req: any, res: any){        
 
     }
+
 }

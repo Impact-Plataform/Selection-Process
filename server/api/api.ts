@@ -1,7 +1,6 @@
 import express from 'express'
 import { LoggerController } from '../logger/loggerController';
 import { ManagerService } from '../services/Manager/manager-service';
-import log from '../logger/logger';
 const router = express.Router();
 
 var managerService = new ManagerService();

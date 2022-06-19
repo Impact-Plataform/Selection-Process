@@ -3,7 +3,7 @@ import { Candidate } from "../Registry/candidate";
 export class Validator{
 
     static Candidate(name: string, birthdate: string, email: string, 
-        phone: string, how_knew_plataforma?: string){
+        phone: string, how_knew_plataforma?: string, speak_english?: string){
 
             if(Validator.HasPropertiesCandidate(name, birthdate, email, phone)){
 
@@ -11,8 +11,12 @@ export class Validator{
                     how_knew_plataforma = ''
                 }
 
+                if(speak_english == null){
+                    speak_english = ''
+                }
+
                 return new Candidate(name, birthdate, email,
-                    phone, how_knew_plataforma);
+                    phone, how_knew_plataforma, speak_english);
 
             }
 
