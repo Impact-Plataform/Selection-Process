@@ -1,3 +1,4 @@
+import { body } from "express-validator";
 import { Candidate } from "./candidate";
 import { RegistryStorageFake } from "./registry-storageFake";
 
