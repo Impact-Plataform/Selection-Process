@@ -2,7 +2,8 @@ import { EmailService } from "../Email/emailService";
 import { QuestionaireService } from "../Questionaire/questionaire-service";
 import { NextFunction, Request, Response } from "express";
 import { RegistryService } from "../Registry/registry-service";
-import { Validator } from "../common/_requests";
+import { Converter } from "../common/_requests";
+import { validationResult } from "express-validator";
 
 export class ManagerService {
 
@@ -18,8 +19,15 @@ export class ManagerService {
 
     public Register = async (req: Request, res: Response, next: NextFunction) => {
 
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ 
+                errors: errors.array() 
+            });
+        }
+        
         try {
-            var candidate = Validator.Candidate(req.body.name, req.body.birthdate, 
+            var candidate = Converter.CreateCandidate(req.body.name, req.body.birthdate, 
                 req.body.email, req.body.phone, req.body.how_knew_plataforma, req.body.speak_english);
 
             var registerId = await this._registryService.CreateCandidate(candidate);
@@ -37,9 +45,7 @@ export class ManagerService {
     }
 
     public GetTest = async(req: Request, res: Response, next: NextFunction) =>{
-
         try{
-
             var test = await this._questionareService.GetTest();
             return res.status(200).json({
                 test,
@@ -47,11 +53,8 @@ export class ManagerService {
             });
             
         }catch (error) {
-
             next(error);
-
         }
-
     }
 
     async SendTest(req: any, res: any){        
